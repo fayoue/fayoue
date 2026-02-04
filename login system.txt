@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class LoginSystem {
+    public static void main(String[] args) {
+        // Predefined correct credentials
+        String correctUsername = "admin";
+        String correctPassword = "password123";
+        int maxAttempts = 3;
+        int attempts = 0;
+        boolean loggedIn = false;
+
+        Scanner scanner = new Scanner(System.in);
+
+        // Login loop with 3 attempts
+        while (attempts < maxAttempts) {
+            System.out.print("Enter username: ");
+            String username = scanner.nextLine(); // Get username input
+
+            // Masked password input
+            System.out.print("Enter password: ");
+            String password = maskPassword(scanner); // Get masked password
+
+            // Check credentials
+            if (username.equals(correctUsername) && password.equals(correctPassword)) {
+                System.out.println("Login successful!");
+                loggedIn = true;
+                break; // Exit loop on success
+            } else {
+                attempts++;
+                System.out.println("Incorrect username or password. Attempts left: " + (maxAttempts - attempts));
+            }
+        }
+
+        // Final message after attempts
+        if (!loggedIn) {
+            System.out.println("Login failed. Maximum attempts reached.");
+        }
+    }
+
+    // Method to mask password input with '*'
+    private static String maskPassword(Scanner scanner) {
+        StringBuilder password = new StringBuilder();
+        while (true) {
+            char c = scanner.next().charAt(0);
+            if (c == '\n' || c == '\r') break; // Stop on Enter key
+            System.out.print("*"); // Print mask
+            password.append(c);
+        }
+        scanner.nextLine(); // Consume remaining newline
+        return password.toString();
+    }
+}
