@@ -1,0 +1,14 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+public class CustomerTest {
+
+    @Test
+    public void testCustomerDetails() {
+        Customer customer = new Customer("U001", "Alice", "D1234567");
+        assertEquals("U001", customer.getCustomerId());
+        assertEquals("Alice", customer.getName());
+        assertEquals("D1234567", customer.getLicenseNumber());
+    }
+}

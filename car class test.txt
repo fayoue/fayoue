@@ -1,0 +1,27 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+public class CarTest {
+
+    @Test
+    public void testCarAvailability() {
+        Car car = new Car("C001", "Toyota", "Camry");
+        assertTrue(car.isAvailable());
+    }
+
+    @Test
+    public void testRentCar() {
+        Car car = new Car("C001", "Toyota", "Camry");
+        car.rentCar();
+        assertFalse(car.isAvailable());
+    }
+
+    @Test
+    public void testReturnCar() {
+        Car car = new Car("C001", "Toyota", "Camry");
+        car.rentCar();
+        car.returnCar();
+        assertTrue(car.isAvailable());
+    }
+}

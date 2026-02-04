@@ -1,0 +1,56 @@
+public class RentalAgency {
+    private List<Car> cars;
+    private List<Customer> customers;
+
+    public RentalAgency() {
+        cars = new ArrayList<>();
+        customers = new ArrayList<>();
+    }
+
+public class RentalAgency {
+    private List<Car> cars;
+    private List<Customer> customers;
+
+    public RentalAgency() {
+        cars = new ArrayList<>();
+        customers = new ArrayList<>();
+    }
+
+  import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+public class RentalAgencyTest {
+
+    @Test
+    public void testAddCar() {
+        RentalAgency agency = new RentalAgency();
+        Car car = new Car("C001", "Toyota", "Camry");
+        agency.addCar(car);
+        assertEquals(1, agency.getAvailableCars().size());
+    }
+
+    @Test
+    public void testRegisterCustomer() {
+        RentalAgency agency = new RentalAgency();
+        Customer customer = new Customer("U001", "Alice", "D1234567");
+        agency.registerCustomer(customer);
+        assertEquals(1, agency.getCustomers().size());
+    }
+
+    @Test
+    public void testRentAndReturnCar() {
+        RentalAgency agency = new RentalAgency();
+        Car car = new Car("C001", "Toyota", "Camry");
+        agency.addCar(car);
+        Customer customer = new Customer("U001", "Alice", "D1234567");
+        agency.registerCustomer(customer);
+        
+        Car rentedCar = agency.rentCar("C001");
+        assertNotNull(rentedCar);
+        assertFalse(rentedCar.isAvailable());
+        
+        agency.returnCar("C001");
+        assertTrue(rentedCar.isAvailable());
+    }
+}

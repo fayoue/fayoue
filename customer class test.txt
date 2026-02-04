@@ -1,0 +1,51 @@
+public class RentalAgency {
+    private List<Car> cars;
+    private List<Customer> customers;
+
+    public RentalAgency() {
+        cars = new ArrayList<>();
+        customers = new ArrayList<>();
+    }
+
+    public void addCar(Car car) {
+        cars.add(car);
+    }
+
+    public void registerCustomer(Customer customer) {
+        customers.add(customer);
+    }
+
+    public Car rentCar(String carId, String customerId) {
+        Car rentedCar = null;
+        for (Car car : cars) {
+            if (car.getCarId().equals(carId) && car.isAvailable()) {
+                car.rentCar();
+                rentedCar = car;
+                // Here you can record the transaction, e.g., add to a list of rentals
+                break;
+            }
+        }
+        return rentedCar;
+    }
+
+    public void returnCar(String carId) {
+        for (Car car : cars) {
+            if (car.getCarId().equals(carId)) {
+                car.returnCar();
+                // Update the transaction record if needed
+                break;
+            }
+        }
+    }
+
+    public Customer findCustomer(String customerId) {
+        for (Customer customer : customers) {
+            if (customer.getCustomerId().equals(customerId)) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    // Optionally, you can have methods to update customer details
+}

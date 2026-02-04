@@ -1,0 +1,42 @@
+public class Car {
+    private String carId;
+    private String make;
+    private String model;
+    private boolean isAvailable;
+
+    public Car(String carId, String make, String model) {
+        this.carId = carId;
+        this.make = make;
+        this.model = model;
+        this.isAvailable = true; // Initially, the car is available
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void rentCar() {
+        if (isAvailable) {
+            isAvailable = false;
+        } else {
+            System.out.println("Car is not available for rent.");
+        }
+    }
+
+    public void returnCar() {
+        isAvailable = true;
+    }
+
+    // Getters
+    public String getCarId() {
+        return carId;
+    }
+
+    public String getMake() {
+        return make;
+    }
+
+    public String getModel() {
+        return model;
+    }
+}
